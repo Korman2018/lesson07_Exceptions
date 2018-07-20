@@ -1,0 +1,9 @@
+[ERROR] 2018-07-20 15:43:14.067 [main] MainReader - File: fi1le.txt not found.
+java.io.FileNotFoundException: fi1le.txt (Не удается найти указанный файл)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_172]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_172]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_172]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_172]
+	at java.io.FileReader.<init>(FileReader.java:58) ~[?:1.8.0_172]
+	at com.epam.file.MainReader.readFile(MainReader.java:53) [classes/:?]
+	at com.epam.file.MainReader.main(MainReader.java:42) [classes/:?]
