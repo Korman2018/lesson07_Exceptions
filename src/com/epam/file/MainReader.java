@@ -38,10 +38,13 @@ public class MainReader {
      * @param args
      */
     public static void main(String[] args) {
+
         try {
-            readFile("file.txt");
+            readFile("file.t1xt");
         } catch (MyIOException e) {
-            LOGGER.error("I/O error in method 'readFile'", e);
+            LOGGER.error("catch MyIOException in method 'main'", e);
+        } finally {
+            LOGGER.debug("exit\n");
         }
     }
 
@@ -62,22 +65,29 @@ public class MainReader {
                 Date date = parseDate(strDate);
 
                 if (date != null) {
-                    //Выводим дату в консоль в формате dd-mm-yy
-                    LOGGER.debug("Date: " + strDate + " successfully parsed to "
-                            + String.format("%1$td-%1$tm-%1$ty", date));
-                } else {
-                    LOGGER.debug("'" + strDate + "' is incorrect date");
-                }
+                    String formattedDate = String.format("%1$td-%1$tm-%1$ty", date);
 
+                    LOGGER.debug("Date: " + strDate + " successfully parsed to " + formattedDate);
+                    //Выводим дату в консоль в формате dd-mm-yy
+                    System.out.println(formattedDate);
+
+                } else {
+                    String message = "'" + strDate + "' is incorrect date";
+
+                    System.out.println(message);
+                    LOGGER.debug(message);
+                }
                 //Читаем следующую строку из файла
                 strDate = byfReader.readLine();
                 LOGGER.debug("'" + strDate + "' correctly read from file");
-
             }
         } catch (FileNotFoundException e) {
-            LOGGER.error("File: '" + fileName + "' not found.", e);
+            String message = "File: '" + fileName + "' not found.";
+
+            System.out.println(message);
+            LOGGER.error(message, e);
         } catch (IOException e) {
-            LOGGER.error("I/O error in method 'readFile'", e);
+            LOGGER.error("catch IOException in method 'readFile'", e);
             throw new MyIOException(e);
         }
     }
